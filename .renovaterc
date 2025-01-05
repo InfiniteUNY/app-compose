@@ -1,0 +1,64 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    "schedule:weekends",
+    ":semanticCommits"
+  ],
+  "ignoreUnstable": true,
+  "minimumReleaseAge": "7 days",
+  "vulnerabilityAlerts": {
+    "labels": [
+      "security"
+    ],
+    "schedule": "at any time"
+  },
+  "baseBranches": [
+    "main"
+  ],
+  "packageRules": [
+    {
+      "matchManagers": [
+        "kustomize"
+      ],
+      "matchUpdateTypes": [
+        "minor",
+        "patch"
+      ],
+      "groupName": "non-major dependencies",
+      "groupSlug": "non-major-dependencies",
+      "labels": [
+        "dependencies"
+      ]
+    },
+    {
+      "matchManagers": [
+        "kustomize"
+      ],
+      "matchUpdateTypes": [
+        "major"
+      ],
+      "groupName": "major dependencies",
+      "groupSlug": "major-dependencies",
+      "labels": [
+        "dependencies",
+        "breaking"
+      ]
+    }
+  ],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "fileMatch": [
+        "(^|/)kustomization\\.ya?ml$"
+      ],
+      "matchStringsStrategy": "any",
+      "matchStrings": [
+        "https://github.com/(?<depName>[\\w-]+/[\\w-]+)/raw/(?<currentValue>[\\w\\.-]+)//",
+        "https://raw.githubusercontent.com/(?<depName>[\\w-]+/[\\w-]+)/(?<currentValue>[\\w\\.-]+)/",
+        "https://github.com/(?<depName>[\\w-]+/[\\w-]+)/releases/download/(?<currentValue>[\\w\\.-]+)/"
+      ],
+      "datasourceTemplate": "github-releases"
+    }
+  ]
+}
