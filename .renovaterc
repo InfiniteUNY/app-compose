@@ -39,7 +39,7 @@
         "major"
       ],
       "groupName": "major dependencies",
-      "groupSlug": "major-dependencies",
+      "groupSlug": "dependencies",
       "labels": [
         "dependencies",
         "breaking"
