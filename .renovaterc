@@ -19,7 +19,8 @@
   "packageRules": [
     {
       "matchManagers": [
-        "kustomize"
+        "kustomize",
+        "custom.regex"
       ],
       "matchUpdateTypes": [
         "minor",
@@ -33,7 +34,8 @@
     },
     {
       "matchManagers": [
-        "kustomize"
+        "kustomize",
+        "custom.regex"
       ],
       "matchUpdateTypes": [
         "major"
